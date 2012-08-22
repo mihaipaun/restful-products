@@ -96,6 +96,33 @@ app.put('/api/products/:id', function (req, res) {
   });
 });
 
+// bulk update
+app.put('/api/products', function (req, res) {
+  var i, len = 0;
+  console.log("is Array req.body.products");
+  console.log(Array.isArray(req.body.products));
+  console.log("PUT: (products)");
+  console.log(req.body.products);
+  if (Array.isArray(req.body.products)) {
+    len = req.body.products.length;
+  }
+  for (i = 0; i < len; i++) {
+    console.log("Update product by id: ");
+    for (var id in req.body.products[i]) {
+      console.log(id);
+    }
+    ProductModel.update({ "_id": id}, req.body.products[i][id], function (err, numAffected) {
+      if (err) {
+        console.log("Error on update");
+        console.log(err);
+      } else {
+        console.log("updated num: " + numAffected);
+      }
+    });
+  }
+  return res.send(req.body.products);
+});
+
 // Delete a single product by ID
 app.delete('/api/products/:id', function (req, res) {
   return ProductModel.findById(req.params.id, function (err, product) {
@@ -107,6 +134,18 @@ app.delete('/api/products/:id', function (req, res) {
         console.log(err);
       }
     });
+  });
+});
+
+// bulk delete
+app.delete('/api/products', function (req, res) {
+  ProductModel.remove(function (err) {
+    if (!err) {
+      console.log("All products have been removed");
+      return res.send('');
+    } else {
+      console.log(err);
+    }
   });
 });
 
