@@ -1,4 +1,4 @@
-In which I explore creating a RESTful API using Node.js, Express, MongoDB and Mongoose.
+In which I explore creating a RESTful API using Node.js, Express, MongoDB with Mongoose, and then I use Backbone.js to interact with the web service.
 
 ### Notes
 * Read more about [schema types](http://mongoosejs.com/docs/schematypes.html)
@@ -60,3 +60,11 @@ In which I explore creating a RESTful API using Node.js, Express, MongoDB and Mo
             console.dir(jqXHR); 
           }
         });
+
+* Backbone uses a [sync](http://documentcloud.github.com/backbone/#Sync) object to interact with the API
+* Each product in the #list represents data found in the model
+* The product #list represents a collection of (product) models
+* The HTML is generated using a view which renders data - blending the model's JSON data with a template
+* A route triggers the asynchronous process of fetching data and rendering the product #list by listening for a [hashchange](http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#event-hashchange) or using [pushState](https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history)
+* Look into Backbone's [Routers](http://documentcloud.github.com/backbone/#Router), [Models](http://documentcloud.github.com/backbone/#Model), [Views](http://documentcloud.github.com/backbone/#View), [Collections](http://documentcloud.github.com/backbone/#Collection), [Backbone.sync](http://documentcloud.github.com/backbone/#Sync) and [Backbone.history](http://documentcloud.github.com/backbone/#History)
+* Also, [jQuery deferred object](http://api.jquery.com/category/deferred-object/), [Mustache](https://github.com/janl/mustache.js/)
