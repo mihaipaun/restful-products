@@ -55,8 +55,7 @@ app.post('/api/products', function (req, res) {
   product = new ProductModel({
     title: req.body.title,
     description: req.body.description,
-    style: req.body.style,
-    images: [Images]
+    style: req.body.style
   });
   product.save(function (err) {
     if(!err) {
